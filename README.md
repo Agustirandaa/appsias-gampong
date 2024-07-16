@@ -1,6 +1,6 @@
 <h1>
     <b>Teknologi :</b>
-    <span>Laravle + Inertia + React JS</span>
+    <span>Laravel + Inertia + React JS</span>
 </h1>
 
 
