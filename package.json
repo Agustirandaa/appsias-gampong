@@ -15,8 +15,15 @@
         "vite": "^5.2.13"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+        "@ckeditor/ckeditor5-react": "^7.0.0",
         "@inertiajs/react": "^1.1.0",
+        "apexcharts": "^3.49.1",
+        "moment": "^2.30.1",
+        "moment-timezone": "^0.5.45",
         "react": "^18.3.1",
-        "react-dom": "^18.3.1"
+        "react-apexcharts": "^1.4.1",
+        "react-dom": "^18.3.1",
+        "react-html-parser": "^2.0.2"
     }
 }

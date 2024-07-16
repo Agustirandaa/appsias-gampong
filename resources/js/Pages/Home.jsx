@@ -3,7 +3,7 @@ import Navbar from "@Fragments/Navbar";
 import * as React from 'react';
 import Section from "@Elements/Section";
 import { House, People, GlobeAsia, Journals, Rocket } from "@Icons";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 
 const itemsNav = [
@@ -29,31 +29,32 @@ const itemsNav = [
     },
 ]
 
-const infoDesa = [
-    {
-        name: "Jumlah Penduduk (Jiwa)",
-        value: 342,
-        icon: People
-    },
-    {
-        name: "Luas Wilayah (Ha)",
-        value: 123,
-        icon: House
-    },
-    {
-        name: "Luas Perkebunan",
-        value: 23,
-        icon: GlobeAsia
-    },
-    {
-        name: "Jumlah Dusun",
-        value: 10,
-        icon: Journals
-    }
-]
+export default function Home() {
 
-export default function Home({aparats}) {
+    const { aparats, totalPosting, totalKeluarga, totalPenduduk, totalAparat } = usePage().props
 
+    const infoDesa = [
+        {
+            name: "Jumlah Penduduk (Jiwa)",
+            value: totalPenduduk + totalKeluarga,
+            icon: People
+        },
+        {
+            name: "Luas Wilayah (Ha)",
+            value: 123,
+            icon: House
+        },
+        {
+            name: "Luas Perkebunan",
+            value: 23,
+            icon: GlobeAsia
+        },
+        {
+            name: "Jumlah Dusun",
+            value: 10,
+            icon: Journals
+        }
+    ];
 
     const [active, setActive] = React.useState(2);
     const handleClick = (index) => {
@@ -90,7 +91,7 @@ export default function Home({aparats}) {
     return (
         <div className="">
             <Jumbotron />
-            <Navbar variant={`sticky top-0`}>
+            <Navbar variant={`sticky top-0`} extraClass="bg-blue-600 text-white">
                     {itemsNav.map((items, idx) => (
                     <a 
                     onClick={() => handleClick(idx)}
@@ -240,7 +241,7 @@ export default function Home({aparats}) {
 
             <Section id="berita" title="Berita" showSection={showSection} variant="bg-blue-50" caption="Kunjungi berita desa kami terkini">
                 <div className="flex justify-center w-full p-5">
-                    <Link href="/berita" className="flex items-center gap-3 px-8 py-4 font-semibold text-blue-600 bg-white rounded-full shadow-lg font-inter hover:bg-blue-600 hover:text-white group">
+                    <Link href="/news/post" className="flex items-center gap-3 px-8 py-4 font-semibold text-blue-600 bg-white rounded-full shadow-lg font-inter hover:bg-blue-600 hover:text-white group">
                         Lihat semua
                         <Rocket color="text-blue-600 group-hover:text-white" size="20" />
                     </Link>

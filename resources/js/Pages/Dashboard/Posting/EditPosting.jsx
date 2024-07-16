@@ -1,10 +1,13 @@
 import DashboardLayouts from "@Layouts/DashboardLayouts";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { Arrow } from "@Icons";
 import FormPosting from "@Fragments/Form/FormPosting";
-export default function CreatePosting() {
+export default function EditPosting() {
+
+    const { postings } = usePage().props
+
     return (
-        <DashboardLayouts title="Add Posting">
+        <DashboardLayouts title="Edit Posting">
           
            <div className="w-full h-auto min-h-[80vh] px-4 py-10 space-y-8 bg-white shadow-xl rounded-t-xl">
                 <div className="flex justify-end w-full gap-5">
@@ -14,7 +17,7 @@ export default function CreatePosting() {
                     </Link>
                 </div>
 
-                <FormPosting />
+                <FormPosting editPostingData={postings} />
 
            </div>
         </DashboardLayouts>

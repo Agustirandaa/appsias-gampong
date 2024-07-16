@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 
-export default function Navbar({children, variant}) {
+export default function Navbar({children, variant, extraClass}) {
 
     
     const [scrolled, setScrolled] = React.useState(false);
@@ -23,7 +23,7 @@ export default function Navbar({children, variant}) {
       }, []);
 
     return (
-        <nav className={` ${variant} shadow-md flex z-10 justify-center w-full py-4 md:gap-12 transition-all ${scrolled ? 'bg-blue-600 text-white' : 'bg-white text-blue-600'}`}>
+        <nav className={` ${variant} shadow-md flex z-10 justify-center w-full py-4 md:gap-12 transition-all ${scrolled ? extraClass : 'bg-white text-blue-600'}`}>
            {children}
         </nav>
     )

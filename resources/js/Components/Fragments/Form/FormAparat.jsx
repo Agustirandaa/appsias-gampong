@@ -16,6 +16,9 @@ const optionSelect = [
     {
         value: "Sekretaris",
     },
+    {
+        value: "Anggota",
+    },
 ]
 
 export default function FormAparat() {
@@ -27,21 +30,17 @@ export default function FormAparat() {
         image: null,
     });
 
-    // const handleChange = (e) => {
-    //     const {name, value} = e.target
-    //     setData({
-    //         ...data, 
-    //         [name] : value
-    //     });
-    // }
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/dashboard/aparatdesa/');
+        try{
+            post('/dashboard/aparatdesa/');
+        }catch(error) {
+            console.log("Errornya :" + error);
+        }
     }
     
     return (
-       <div className="w-full xl:w-[30vw] p-10 border rounded-lg shadow-lg">
+       <div className="w-full xl:w-[35vw] p-10 ">
          <form onSubmit={handleSubmit} className="space-y-8">
             <Input 
                 label="Nama Lengkap" 

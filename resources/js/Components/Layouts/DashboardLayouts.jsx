@@ -30,7 +30,7 @@ export default function({children, title}) {
     return (
       <>
         
-        {flash.success && <FlashMessage color="emerald-600" message={flash.success} action={true} />}
+        {flash.success && <FlashMessage color="blue-600" message={flash.success} action={true} />}
 
         <Sidebar showSidebar={showSidebar} handleSidebar={handleSidebar} />
         <div className="bg-white w-full h-screen absolute right-0 md:max-w-[calc(100vw-17rem)] ">

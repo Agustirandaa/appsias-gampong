@@ -1,9 +1,16 @@
-import { Link } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import { Trash, PencilSquare, ViewList } from "@Icons";
+import Button from "@Elements/Button";
+import moment from "moment";
 
+export default function PostingTable({datas}) {
+    
+    const { delete: destroy } = useForm();
+    const handleDelete = (id) => { 
+        const result = confirm('Are you sure?');
+        if (result) destroy('/dashboard/posting/' + id);
+     }
 
-const items = Array.from({length: 5})
-export default function PostingTable() {
     return (
       <div className="overflow-x-auto">
          <div className="inline-block min-w-full align-middle">
@@ -11,6 +18,7 @@ export default function PostingTable() {
                 <table className="min-w-full divide-y divide-blue-300">
                     <thead >
                         <tr>
+                            <th scope="col" className="px-3 py-3 text-sm font-semibold text-blue-600 uppercase font-inter text-start"> No</th>
                             <th scope="col" className="px-3 py-3 text-sm font-semibold text-blue-600 uppercase font-inter text-start"> Posting Date</th>
                             <th scope="col" className="px-3 py-3 text-sm font-semibold text-blue-600 uppercase font-inter text-start">Title</th>
                             <th scope="col" className="px-3 py-3 text-sm font-semibold text-blue-600 uppercase font-inter text-start">Kategori</th>
@@ -19,20 +27,21 @@ export default function PostingTable() {
                         </tr>
                     </thead>
                     <tbody className="overflow-auto divide-y divide-neutral-100">
-                    {items.map((item, idx) =>(
+                    {datas.data.map((data, idx) =>(
                          <tr className="hover:bg-blue-50" key={idx}>
-                            <td className="px-3 py-4 text-sm font-inter text-start whitespace-nowrap">01-01-2022  15:15:07</td>
-                            <td className="px-3 py-4 text-sm font-inter text-start">Pemograman bebarbasis web</td>
-                            <td className="px-3 py-4 text-sm font-inter text-start">Programming</td>
-                            <td className="px-3 py-4 text-sm font-inter text-start whitespace-nowrap lg:text-wrap">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt debitis fugiat animi quidem minus ea enimt </td>
+                            <td className="px-3 py-4 text-sm font-semibold font-inter text-start whitespace-nowrap">{idx + 1}</td>
+                            <td className="px-3 py-4 text-sm font-inter text-start whitespace-nowrap">{moment(data.created_at).format('DD-MM-YYYY HH:mm:ss')}</td>
+                            <td className="px-3 py-4 text-sm font-inter text-start whitespace-nowrap">{data.title}</td>
+                            <td className="px-3 py-4 text-sm text-blue-600 font-inter text-start whitespace-nowrap">{data.category.name}</td>
+                            <td className="px-3 py-4 text-sm font-inter text-start whitespace-nowrap lg:text-wrap">{data.excerpt}</td>
                             <td className="flex items-center justify-center gap-4 px-3 py-4 text-sm font-inter">
-                                <Link href="#">
+                                <Button onClick={() => handleDelete(data.id)} variant={``}>
                                     <Trash color="text-red-500" size="18" />
-                                </Link>
-                                <Link href="#">
+                                </Button>
+                                <Link href={`/dashboard/posting/${data.id}/edit`}>
                                     <PencilSquare color="text-green-500" size="18" />
                                 </Link>
-                                <Link href="#">
+                                <Link href={`/dashboard/posting/${data.id}`}>
                                     <ViewList color="text-indigo-500" size="18" />
                                 </Link>
                             </td>

@@ -26,4 +26,32 @@
             transform: translateY(0);
         }
     }
+
+    .fadeIn {
+        animation: fadeIn 1.5s forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .fadeRight {
+        animation: fadeRight 1.5s forwards;
+    }
+
+    @keyframes fadeRight {
+        from {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
 }

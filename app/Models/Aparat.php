@@ -11,4 +11,14 @@ class Aparat extends Model
     use HasFactory, HasUuids;
 
     protected $guarded = ['id'];
+
+
+
+    // Handle Query Scope Search
+    public function scopeSearch($query, $searchTerm)
+    {
+        return $query->where(function ($query) use ($searchTerm) {
+            $query->where('name', 'like', '%' . $searchTerm . '%');
+        });
+    }
 }

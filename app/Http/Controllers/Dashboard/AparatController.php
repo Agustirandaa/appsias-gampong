@@ -12,7 +12,13 @@ class AparatController extends Controller
 {
     public function index()
     {
-        $aparats = Aparat::paginate(10);
+
+        request('search') ? (
+            $aparats = Aparat::search(request('search'))->paginate(10)
+        ) : (
+            $aparats = Aparat::paginate(10)
+        );
+
         return Inertia::render('Dashboard/Aparat/index', [
             'aparats' => $aparats
         ]);
