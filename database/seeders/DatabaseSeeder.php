@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         User::create([
             'fullname' => 'M. Yoga Agustiranda',
             'username' => 'agustiranda',
-            'email' => 'sucirahmilestari@gmail.com',
-            'password' => bcrypt('ayang'),
+            'email' => 'agustiranda.dev@gmail.com',
+            'password' => bcrypt('12345'),
             'remember_token' => 'rG15wPeu8Duy6i3FmIWpDb1Qp8HJp7HmmpROQDPJCTZaa3uZPelAzloZBn4n',
         ]);
 

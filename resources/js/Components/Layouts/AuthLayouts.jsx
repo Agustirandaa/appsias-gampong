@@ -1,8 +1,11 @@
 import * as React from "react";
-import { usePage } from "@inertiajs/react"
+import { Link, useForm, usePage } from "@inertiajs/react"
 import FlashMessage from "@Fragments/FlashMessage"
+import Button from "@Elements/Button"
 
 export default function AuthLayouts({title, children }) {
+    const { flash } = usePage().props
+    const { post } = useForm({});
 
     React.useEffect(() => {
         document.title = `Halaman | ${title}`;
@@ -15,11 +18,16 @@ export default function AuthLayouts({title, children }) {
         }
     }, []);
 
-    const {flash} = usePage().props
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        post('/auth/forgot-password');
+    }
 
     return (
         <>
             {flash.error && <FlashMessage color="red-500" message={flash.error}/>}
+            {flash.success && <FlashMessage color="blue-500" message={flash.success}/>}
            
             <div className="flex w-full min-h-screen justify-center items-center bg-gray-50 p-2.5 md:p-1.5 bg-gradient-walpaper">
                 <div className="grid w-full max-w-5xl grid-cols-3 overflow-hidden bg-white rounded-lg shadow-lg shadow-gray-400 md:min-h-[65vh]">
@@ -39,7 +47,17 @@ export default function AuthLayouts({title, children }) {
 
                             {/* Form */}
                             {children}
-                        
+
+                            <form 
+                                onSubmit={handleSubmit}
+                                className="py-4 space-y-5 x-6 md:px-20 md:space-y-8">
+                                    <span className="font-inter"> Apa anda lupa password ? </span>
+                                    <Button
+                                        type="submit"
+                                        variant="underline underline-offset-4 font-semibold text-blue-600">
+                                        Send Email
+                                    </Button>
+                            </form>
                         </div>
                     </div>
                 </div>

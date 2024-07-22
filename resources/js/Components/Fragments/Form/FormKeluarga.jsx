@@ -14,6 +14,8 @@ export default function FormKeluarga() {
         
     });
 
+    console.log(errors);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         try{
